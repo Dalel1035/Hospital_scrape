@@ -6,10 +6,10 @@ import urlparse
 import lxml.html
 
 def scrape_table(root):
-  rows = root.cssselect("tr")
+  rows = root.cssselect("TR")
   for row in rows:
     record = {}
-    table_cells = row.cssselect("td")
+    table_cells = row.cssselect("TD")
     if table_cells:
       record['Venue']=table_cells[0].text_content
       record['Address']=table_cells[1].text_content
@@ -19,7 +19,6 @@ def scrape_table(root):
       
 def scrape_and_look_for_next_link(url):
   html=scraperwiki.scrape(url)
-  print html
   root = lxml.html.fromstring(html)
   scrape_table(root)
   
