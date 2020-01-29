@@ -14,7 +14,7 @@ def scrape_table(root):
       record['Venue']=table_cells[0].text_content
       record['Address']=table_cells[1].text_content
       
-      print record, '--------------
+      print record, '--------------'
       try:
          scraperwiki.sql.save(["Venue"], record)
       except:
