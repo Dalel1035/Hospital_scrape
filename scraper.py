@@ -11,8 +11,8 @@ def scrape_table(root):
     record = {}
     table_cells = row.cssselect("TD")
     if table_cells:
-      record['Venue']=table_cells[0].text_content
-      record['Address']=table_cells[1].text_content
+      record['Venue']=table_cells[0].text_content()
+      record['Address']=table_cells[1].text_content()
       
       print record, '--------------'
       try:
