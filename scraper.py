@@ -3,7 +3,7 @@
 
 import scraperwiki
 import urlparse
-import lxml.xml
+import lxml.html
 
 def scrape_table(root):
   rows = root.cssselect("table.Trolley tr")
