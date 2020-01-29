@@ -6,19 +6,16 @@ import urlparse
 import lxml.html
 
 def scrape_table(root):
-  rows = root.cssselect("table.Trolley tr")
+  rows = root.cssselect("tr")
   for row in rows:
     record = {}
     table_cells = row.cssselect("td")
     if table_cells:
-      record['Date']=table_cells[0].text
-      record['Hospital']=table_cells[1].text
-      record['Region']=table_cells[2].text
-      record['Trolley Total']=table_cells[3].text
-      record['Ward Total']=table_cells[4].text
+      record['Venue']=table_cells[0].text_content
+      record['Address']=table_cells[1].text_content
       
       print record, '--------------'
-      scraperwiki.sql.save(["Hospital"], record)
+      scraperwiki.sql.save(["Venue"], record)
       
 def scrape_and_look_for_next_link(url):
   html=scraperwiki.scrape(url)
@@ -26,7 +23,7 @@ def scrape_and_look_for_next_link(url):
   root = lxml.html.fromstring(html)
   scrape_table(root)
   
-starting_url='http://inmo.ie/6022'
+starting_url='http://www.ukjockey.com/racecourses.html'
 scrape_and_look_for_next_link(starting_url)
 #
 # # Read in a page
